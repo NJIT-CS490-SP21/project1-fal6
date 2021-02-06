@@ -30,12 +30,25 @@ headers = {
 @app.route('/')
 def hello_world():
     artist, name = get_artist()
-    song = get_song(artist)
-    return render_template("index.html",song = song,name = name)
+    songs = get_songs(artist)
+    print(songs)
+    return render_template("index.html",songs = songs,name = name)
 
-def get_song(artist):
-    song = "Hello there"
-    return song
+def get_songs(artist):
+    song_response = requests.get(
+        artist_url+artist+"/top-tracks"+"?market=US",
+        headers=headers,
+    ).json()
+    songs = []
+    for track in song_response["tracks"]:
+        songs.append(
+            {"name":track["name"],
+            "id":track["id"],
+            "preview":track["preview_url"],
+            "image":track["album"]["images"][0]["url"],
+            },
+        )
+    return songs
     
 def get_artist():
     artists = ["6qqNVTkY8uBg9cP3Jd7DAH",
