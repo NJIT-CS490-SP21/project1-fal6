@@ -31,8 +31,13 @@ headers = {
 def hello_world():
     artist, name = get_artist()
     songs = get_songs(artist)
-    print(songs)
-    return render_template("index.html",songs = songs,name = name)
+    song = get_song(songs)
+    return render_template("index.html", songs=songs,song = song,name = name)
+
+def get_song(songs):
+    song = songs[random.randint(0,len(songs)-1)]
+    return song
+    
 
 def get_songs(artist):
     song_response = requests.get(
@@ -53,8 +58,10 @@ def get_songs(artist):
 def get_artist():
     artists = ["6qqNVTkY8uBg9cP3Jd7DAH",
     "4q3ewBCX7sLwd24euuV69X",
-    "7Ln80lUS6He07XvHI8qqHH",]
-    artist = artists[random.randint(0,2)]
+    "7Ln80lUS6He07XvHI8qqHH",
+    "2Otnykd696YidQYfEGVmNq",
+    ]
+    artist = artists[random.randint(0,3)]
     name=requests.get(
         artist_url+artist,
         headers=headers,

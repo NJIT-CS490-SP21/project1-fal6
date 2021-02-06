@@ -6,6 +6,15 @@
     </head>
     <body>
         <h1>{{ name }}</h1>
-        <h2>{{ song }}</h2>
+        <!--<h3>Top songs</h2>-->
+        <!--{% for i in songs %}-->
+        <!--<h2>{{ i["name"] }}</h2>-->
+        <!--{% endfor %}-->
+        <h1>Preview</h1>
+        <p>{{ song["name"] }}</p>
+        <audio controls>
+            <source src="{{ song['preview'] }}"></source>
+        </audio>
+        <img src="{{ song['image'] }}"></img>
     </body>
 </html>
