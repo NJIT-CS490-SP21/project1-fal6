@@ -36,6 +36,8 @@ def hello_world():
 
 def get_song(songs):
     song = songs[random.randint(0,len(songs)-1)]
+    if not song["preview"]:
+        song["preview"] = "https://p.scdn.co/mp3-preview/22bf10aff02db272f0a053dff5c0063d729df988?cid=0205bae2d141422e989258f24b431c8c"
     return song
     
 
