@@ -25,10 +25,10 @@ headers = {
 
 def get_song(songs):
     '''
-    Returns a random song from the list of top songs
-    Sets null previews to Rickroll    
+    Returns a random song from the list of top songs.     
     '''
     song = songs[random.randint(0,len(songs)-1)]
+    #Sets null preview to Never going to give you up
     if not song["preview"]:
         song["preview"] = "https://p.scdn.co/mp3-preview/22bf10aff02db272f0a053dff5c0063d729df988?cid=0205bae2d141422e989258f24b431c8c"
     return song
@@ -55,7 +55,7 @@ def get_songs(artist):
     
 def get_artist():
     '''
-    Returns a random artist from a list f 4 artists
+    Returns a random artist from a list of 4 artists
     '''
     artists = ["6qqNVTkY8uBg9cP3Jd7DAH",
     "4q3ewBCX7sLwd24euuV69X",
