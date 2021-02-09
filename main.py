@@ -1,5 +1,6 @@
+import os
 from flask import Flask, render_template
-from spotify import * # Handles all spotify requests
+from spotify import get_artist, get_song, get_songs # Handles all spotify requests
 
 
 app = Flask(__name__)
