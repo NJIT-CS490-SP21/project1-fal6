@@ -12,7 +12,7 @@ def hello_world():
     artist, name = get_artist()
     songs = get_songs(artist)
     song = get_song(songs)
-    lyric_link = get_lyric_link(song["name"])
+    lyric_link = get_lyric_link(song["name"],name)
     return render_template("index.html", songs=songs,song = song,name = name,lyric=lyric_link)
 
 
