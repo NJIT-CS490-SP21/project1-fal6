@@ -20,5 +20,6 @@
         </p>
         <img src="{{ song['image'] }}"></img>
         <p><a href="{{ lyric }}">Listen to the lysics here</a></p>
+        {{ info | safe }}
     </body>
 </html>
