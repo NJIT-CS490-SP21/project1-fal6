@@ -15,7 +15,6 @@ def get_lyric_link(song_name,artist_name):
     '''
     Returns a url and user id for the lyrics of a given song
     '''
-
     if "(with" in song_name: #Cleans songs with colabs for easier search
         song_name = song_name[:song_name.index("(with")-1]
 
@@ -38,5 +37,9 @@ def get_artist_info(artist_id):
     data = {"text_format":"html"}
     response = requests.get(info_url,headers=headers,data=data)
     response_json = response.json()
-    info = response_json["response"]["artist"]["description"]["html"]
+    info = "Meh"
+    try:
+        info = response_json["response"]["artist"]["description"]["html"]
+    except:
+        print(response_json)
     return info
