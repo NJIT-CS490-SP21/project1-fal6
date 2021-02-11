@@ -27,7 +27,7 @@ def get_lyric_link(song_name,artist_name):
             return result["result"]["url"] # Return the link
     
     song = response_json["response"]["hits"][0]["result"]
-    return song["url"],song["primary_artist"]["id"]
+    return song["url"]
 
 def get_artist_info(artist_name):
     '''
@@ -44,8 +44,8 @@ def get_artist_info(artist_name):
             artist_id = artist["result"]["primary_artist"]["id"]
             break
     info_url = url+'artists/'+str(artist_id)
-    data = {"text_format":"html"}
-    response = requests.get(info_url,data=data,headers=headers)
+    data = "text_format=html"
+    response = requests.get(info_url+'?'+data,headers=headers)
     response_json = response.json()
     
     info=response_json["response"]["artist"]["description"]["html"]
