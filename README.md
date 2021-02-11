@@ -7,6 +7,7 @@ In this Web App, you are able to see information from a random song selected fro
 pip install flask
 pip install requests
 pip install python-dotenv
+pip install unidecode
 ``` 
 ## Setup
 1. Create a .env file in the main directory
