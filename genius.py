@@ -28,3 +28,25 @@ def get_lyric_link(song_name,artist_name):
     
     song = response_json["response"]["hits"][0]["result"]
     return song["url"],song["primary_artist"]["id"]
+
+def get_artist_info(artist_name):
+    '''
+    Returns information about the artist
+    '''
+    
+    search_url = url+'search'
+    data = {"q":artist_name}
+    response = requests.get(search_url,data=data,headers=headers)
+    response_json = response.json()
+    artist_id = None
+    for artist in response_json["response"]["hits"]:
+        if unidecode(artist["result"]["primary_artist"]["name"].lower()) == unidecode(artist_name.lower()):
+            artist_id = artist["result"]["primary_artist"]["id"]
+            break
+    info_url = url+'artists/'+str(artist_id)
+    data = {"text_format":"html"}
+    response = requests.get(info_url,data=data,headers=headers)
+    response_json = response.json()
+    
+    info=response_json["response"]["artist"]["description"]["html"]
+    return info
