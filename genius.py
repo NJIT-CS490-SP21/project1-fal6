@@ -23,23 +23,8 @@ def get_lyric_link(song_name,artist_name):
     response_json = response.json()
     
     for result in response_json["response"]["hits"]: #For each result
-        if unidecode(artist_name.lower()) in unidecode(result["result"]["primary_artist"]["name"].lower()):
-            return result["result"]["url"], result["result"]["primary_artist"]["id"]
+        if unidecode(artist_name.lower()) in unidecode(result["result"]["primary_artist"]["name"].lower()): # If the artists matches
+            return result["result"]["url"] # Return the link
     
     song = response_json["response"]["hits"][0]["result"]
     return song["url"],song["primary_artist"]["id"]
-
-def get_artist_info(artist_id):
-    '''
-    Returns information about the artist
-    '''
-    info_url = url+'artists/'+str(artist_id)
-    data = {"text_format":"html"}
-    response = requests.get(info_url,data=data,headers=headers)
-    response_json = response.json()
-    info = "Meh"
-    try:
-        info = response_json["response"]["artist"]["description"]["html"]
-    except:
-        print(response_json)
-    return info
