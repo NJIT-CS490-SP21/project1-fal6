@@ -27,4 +27,4 @@ def get_lyric_link(song_name,artist_name):
             return result["result"]["url"] # Return the link
     
     song = response_json["response"]["hits"][0]["result"]
-    return song["url"],song["primary_artist"]["id"]
+    return song["url"]
