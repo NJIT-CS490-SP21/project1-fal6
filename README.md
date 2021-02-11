@@ -4,10 +4,7 @@ In this Web App, you are able to see information from a random song selected fro
 
 ## Requirements
 ```
-pip install flask
-pip install requests
-pip install python-dotenv
-pip install unidecode
+pip install -r requirements.txt
 ``` 
 ## Setup
 1. Create a .env file in the main directory
@@ -15,8 +12,7 @@ pip install unidecode
 ```
 export SPOT_ID='YOURKEY'
 export SPOT_SECRET='YOURKEY'
-export GEN_ID='YOURKEY'
-export GEN_SERCRET='YOURKEY'
+export GEN_TOKEN='YOURKEY'
 ```
 ## Run Application
 1. Run command from terminal `python main.py`
@@ -26,9 +22,12 @@ export GEN_SERCRET='YOURKEY'
 1. Some songs did not return a song preview. **Solution**: Default song preview for those that do not return one.
 2. Browser kept cacheing CSS files. **Solution**: Set file age to 0 in flask.
 3. There were errors when trying to handle null previews. **Solution**: Handled the null previews and replaced them as stated in solution 1
-
+4. Some artist's names had symbols in their names in one API but not the other. **Solution**: Used unidecode to remove them
 ## Known problems
-Currently there aren't any major problems but there are many missing features.
+Some songs do not currently have any lyrics and lead to a blank page
 
 ## Future improvements
 Some future improvements would be to add a better frontend using a framework like react. Also, add search features so that the user is able to search their own artist. 
+
+## Visit here
+https://obscure-stream-22385.herokuapp.com/
