@@ -7,10 +7,6 @@
     </head>
     <body>
         <h1>{{ name }}</h1>
-        <!--<h3>Top songs</h2>-->
-        <!--{% for i in songs %}-->
-        <!--<h2>{{ i["name"] }}</h2>-->
-        <!--{% endfor %}-->
         <h1>Preview</h1>
         <p>{{ song["name"] }}</p>
         <p>
@@ -19,7 +15,7 @@
             </audio>
         </p>
         <img src="{{ song['image'] }}"></img>
-        <p><a href="{{ lyric }}">Listen to the lysics here</a></p>
+        <p><a href="{{ lyric }}">See the lysics here!</a></p>
         {{ info | safe }}
     </body>
 </html>
