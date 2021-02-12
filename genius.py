@@ -25,9 +25,11 @@ def get_lyric_link(song_name,artist_name):
     for result in response_json["response"]["hits"]: #For each result
         if unidecode(artist_name.lower()) in unidecode(result["result"]["primary_artist"]["name"].lower()): # If the artists matches
             return result["result"]["url"] # Return the link
-    
-    song = response_json["response"]["hits"][0]["result"]
-    return song["url"]
+    if len(response_json["response"]["hits"]) == 0:
+        song = "https://genius.com/"
+    else:
+        song = response_json["response"]["hits"][0]["result"]["url"]
+    return song
 
 def get_artist_info(artist_name):
     '''
