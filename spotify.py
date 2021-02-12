@@ -7,7 +7,7 @@ spotify_secret = os.getenv("SPOT_SECRET")
 
 auth_url="https://accounts.spotify.com/api/token" 
 artist_url="https://api.spotify.com/v1/artists/"
-
+search_url="https://api.spotify.com/v1/search"
 
 auth = requests.post(auth_url,
     {
@@ -53,18 +53,21 @@ def get_songs(artist):
         )
     return songs
     
-def get_artist():
+def get_artist(artist_name):
     '''
     Returns a random artist from a list of 4 artists
     '''
-    artists = ["6qqNVTkY8uBg9cP3Jd7DAH",
-    "4q3ewBCX7sLwd24euuV69X",
-    "7Ln80lUS6He07XvHI8qqHH",
-    "2Otnykd696YidQYfEGVmNq",
-    ]
-    artist = artists[random.randint(0,3)]
-    name=requests.get(
-        artist_url+artist,
+    data={
+        "q":artist_name,
+        "type":"artist",
+        "market":"US"
+    }
+    response_json=requests.get(
+        search_url,
+        data,
         headers=headers,
-    ).json()["name"]
-    return artist,name
+    ).json()
+    artist=response_json["artists"]["items"][0]
+    artist_id = artist["id"]
+    name = artist["name"]
+    return artist_id,name

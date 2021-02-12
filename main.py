@@ -7,9 +7,9 @@ app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
 # main page
-@app.route('/random')
-def hello_world(name):
-    artist, name = get_artist()
+@app.route('/random/<artist_name>')
+def hello_world(artist_name):
+    artist,name = get_artist(artist_name)
     songs = get_songs(artist)
     song = get_song(songs)
     lyric_link = get_lyric_link(song["name"],name)
@@ -24,7 +24,7 @@ def my_form_post():
     if request.method == 'POST':
         text = request.form['text']
         print(text)
-        return redirect(url_for('hello_world',name=text))
+        return redirect(url_for('hello_world',artist_name=text))
     return render_template("search.html")
 
 app.run(
