@@ -8,7 +8,8 @@ app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
 # main page
 @app.route('/random/<artist_name>')
-def hello_world(artist_name):
+def random_song(artist_name):
+    '''Displays a random song, and info from the given artist'''
     artist,name = get_artist(artist_name)
     songs = get_songs(artist)
     song = get_song(songs)
@@ -21,9 +22,10 @@ def hello_world(artist_name):
 
 @app.route('/', methods=['POST','GET'])
 def my_form_post():
+    '''Main page with a text box to search artists '''
     if request.method == 'POST':
         text = request.form['text']
-        return redirect(url_for('hello_world',artist_name=text))
+        return redirect(url_for('random_song',artist_name=text))
     return render_template("search.html")
 
 app.run(
