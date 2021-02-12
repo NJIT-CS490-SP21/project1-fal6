@@ -47,6 +47,7 @@ def get_artist_info(artist_name):
     data = "text_format=html"
     response = requests.get(info_url+'?'+data,headers=headers)
     response_json = response.json()
-    
+    if response_json["meta"]["status"]==404:
+        return "<p>Sorry, no info</p>"
     info=response_json["response"]["artist"]["description"]["html"]
     return info

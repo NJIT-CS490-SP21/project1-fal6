@@ -23,7 +23,6 @@ def hello_world(artist_name):
 def my_form_post():
     if request.method == 'POST':
         text = request.form['text']
-        print(text)
         return redirect(url_for('hello_world',artist_name=text))
     return render_template("search.html")
 
