@@ -7,7 +7,7 @@ app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
 # main page
-@app.route('/random')
+@app.route('/<name>')
 def hello_world(name):
     artist, name = get_artist()
     songs = get_songs(artist)
