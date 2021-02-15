@@ -43,7 +43,7 @@ def get_songs(artist):
         headers=headers,
     ).json()
     songs = []
-    for track in song_response["tracks"]:
+    for track in song_response["tracks"]:#For each track
         songs.append(
             {"name":track["name"],
             "id":track["id"],
@@ -55,7 +55,7 @@ def get_songs(artist):
     
 def get_artist(artist_name):
     '''
-    Returns a random artist from a list of 4 artists
+    Returns an artist id and name given an artist name
     '''
     data={
         "q":artist_name,

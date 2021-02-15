@@ -25,15 +25,17 @@ def get_lyric_link(song_name,artist_name):
     for result in response_json["response"]["hits"]: #For each result
         if unidecode(artist_name.lower()) in unidecode(result["result"]["primary_artist"]["name"].lower()): # If the artists matches
             return result["result"]["url"] # Return the link
-    if len(response_json["response"]["hits"]) == 0:
+    
+    if len(response_json["response"]["hits"]) == 0:#If no lyrics were found
         song = "https://genius.com/"
     else:
         song = response_json["response"]["hits"][0]["result"]["url"]
+    
     return song
 
 def get_artist_info(artist_name):
     '''
-    Returns information about the artist
+    Returns information about the artist in html form
     '''
     
     search_url = url+'search'
@@ -41,15 +43,19 @@ def get_artist_info(artist_name):
     response = requests.get(search_url,data=data,headers=headers)
     response_json = response.json()
     artist_id = None
-    for artist in response_json["response"]["hits"]:
-        if unidecode(artist["result"]["primary_artist"]["name"].lower()) == unidecode(artist_name.lower()):
+    
+    for artist in response_json["response"]["hits"]:#for each artist
+        if unidecode(artist["result"]["primary_artist"]["name"].lower()) == unidecode(artist_name.lower()):#if the name matches
             artist_id = artist["result"]["primary_artist"]["id"]
             break
+    
     info_url = url+'artists/'+str(artist_id)
     data = "text_format=html"
     response = requests.get(info_url+'?'+data,headers=headers)
     response_json = response.json()
-    if response_json["meta"]["status"]==404:
+    
+    if response_json["meta"]["status"]==404 or "html" not in response_json["response"]["artist"]["description"]:
         return "<p>Sorry, no info</p>"
     info=response_json["response"]["artist"]["description"]["html"]
+    
     return info

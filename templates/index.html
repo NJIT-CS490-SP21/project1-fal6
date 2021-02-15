@@ -13,6 +13,10 @@
             <audio controls>
                 <source src="{{ song['preview'] }}"></source>
             </audio>
+            <form method="POST">
+                <input name="text" required>
+                <input type="submit">
+            </form>
         </p>
         <img src="{{ song['image'] }}"></img>
         <p><a href="{{ lyric }}">See the lysics here!</a></p>
