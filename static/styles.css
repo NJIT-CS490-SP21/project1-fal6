@@ -3,3 +3,22 @@ body {
     text-align: center;
     background-color: rgb(55, 55, 58);
 }
+.title{
+    font-size:50px;
+    color: rgb(52, 122, 235);
+}
+
+input[type=text]{
+    padding: 20px 30px;
+    font-size: 30px;
+}
+input[type=submit]{
+    padding: 20px 30px;
+    font-size: 30px;
+    background-color:rgb(48, 191, 33);
+    border:none;
+    border-radius:8px;
+}
+input[type=submit]:hover {
+  background-color: rgb(36, 145, 25);
+}
