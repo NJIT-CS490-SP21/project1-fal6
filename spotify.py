@@ -67,7 +67,10 @@ def get_artist(artist_name):
         data,
         headers=headers,
     ).json()
-    artist=response_json["artists"]["items"][0]
-    artist_id = artist["id"]
-    name = artist["name"]
-    return artist_id,name
+    if response_json["artists"]["items"] == []:#if no match for artist query
+        return "0gxyHStUsqpMadRV0Di1Qt","Rick Astley"
+    else:
+        artist=response_json["artists"]["items"][0]
+        artist_id = artist["id"]
+        name = artist["name"]
+        return artist_id,name
