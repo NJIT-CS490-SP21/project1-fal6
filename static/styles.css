@@ -15,6 +15,22 @@ img{
     color: rgb(52, 122, 235);
 }
 
+.text_input_artist{
+    padding: 10px 20px;
+    font-size: 20px;
+}
+
+.submit_input_artist{
+    padding: 10px 20px;
+    font-size: 20px;
+    background-color:rgb(48, 191, 33);
+    border-radius:8px;
+}
+.submit_input_artist:hover {
+  background-color: rgb(36, 145, 25);
+}
+
+
 .text_input{
     padding: 20px 30px;
     font-size: 30px;
@@ -23,7 +39,6 @@ img{
     padding: 20px 30px;
     font-size: 30px;
     background-color:rgb(48, 191, 33);
-    border:none;
     border-radius:8px;
 }
 .submit_input:hover {
