@@ -10,15 +10,15 @@
                 <input type="text" name="text" placeholder="Search again..." required>
                 <input type="submit">
         </form>
-        <h1>{{ name }}</h1>
-        <h2>{{ song["name"] }}</h2>
+        <h1>{{ song["name"] }}</h1>
+        <h2>by {{ name }}</h2>
+        <img src="{{ song['image'] }}"></img>
         <p>
             <audio controls>
                 <source src="{{ song['preview'] }}"></source>
             </audio>
         </p>
-        <img src="{{ song['image'] }}"></img>
-        <p><a href="{{ lyric }}">See the lysics here!</a></p>
+        <p><a href="{{ lyric }}">See the lyrics here!</a></p>
         {{ info | safe }}
     </body>
 </html>

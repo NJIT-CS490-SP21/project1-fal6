@@ -3,6 +3,9 @@ body {
     text-align: center;
     background-color: rgb(55, 55, 58);
 }
+img{
+    border-radius:50px;
+}
 .title{
     font-size:50px;
     color: rgb(52, 122, 235);
