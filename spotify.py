@@ -9,20 +9,27 @@ auth_url="https://accounts.spotify.com/api/token"
 artist_url="https://api.spotify.com/v1/artists/"
 search_url="https://api.spotify.com/v1/search"
 
-auth = requests.post(auth_url,
-    {
-        'grant_type' : 'client_credentials',
-        'client_id' : spotify_id,
-        'client_secret' : spotify_secret,
-    }
-)
-auth_token = auth.json()["access_token"] # authorization token
-
+def get_token():
+    '''Gets access token'''
+    auth = requests.post(auth_url,
+        {
+            'grant_type' : 'client_credentials',
+            'client_id' : spotify_id,
+            'client_secret' : spotify_secret,
+        }
+    )
+    auth_json=auth.json()
+    auth_token = auth_json["access_token"] # authorization token
+    return auth_token
 headers = {
-    'Authorization': f'Bearer {auth_token}'
+    'Authorization': f'Bearer {get_token()}'
 } # header for all requests
-
-
+def update_token():
+    '''Updates access token'''
+    global headers 
+    headers = {
+        'Authorization': f'Bearer {get_token()}'
+    }
 def get_song(songs):
     '''
     Returns a random song from the list of top songs.     
@@ -38,10 +45,15 @@ def get_songs(artist):
     '''
     Returns a list of top songs given an artist
     '''
-    song_response = requests.get(
-        artist_url+artist+"/top-tracks"+"?market=US",
-        headers=headers,
-    ).json()
+    while(True): 
+        song_response = requests.get(
+            artist_url+artist+"/top-tracks"+"?market=US",
+            headers=headers,
+        ).json()
+        if "error" in song_response: #updates access token
+            update_token()
+        else:
+            break
     songs = []
     for track in song_response["tracks"]:#For each track
         songs.append(
@@ -62,11 +74,16 @@ def get_artist(artist_name):
         "type":"artist",
         "market":"US"
     }
-    response_json=requests.get(
-        search_url,
-        data,
-        headers=headers,
-    ).json()
+    while(True):
+        response_json=requests.get(
+            search_url,
+            data,
+            headers=headers,
+        ).json()
+        if "error" in response_json: #updates access token
+            update_token()
+        else:
+            break
     if response_json["artists"]["items"] == []:#if no match for artist query
         return "0gxyHStUsqpMadRV0Di1Qt","Rick Astley"
     else:
