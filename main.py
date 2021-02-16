@@ -7,9 +7,12 @@ app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
 # main page
-@app.route('/random/<artist_name>')
+@app.route('/random/<artist_name>',methods=['POST',"GET"])
 def random_song(artist_name):
     '''Displays a random song, and info from the given artist'''
+    if request.method =='POST':
+        text=request.form['text']
+        redirect(url_for('random_song',artist_name=text))
     artist,name = get_artist(artist_name)
     songs = get_songs(artist)
     song = get_song(songs)
