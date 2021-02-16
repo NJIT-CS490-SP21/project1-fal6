@@ -57,5 +57,6 @@ def get_artist_info(artist_name):
     if response_json["meta"]["status"]==404 or "html" not in response_json["response"]["artist"]["description"]:
         return "<p>Sorry, no info</p>"
     info=response_json["response"]["artist"]["description"]["html"]
-    
+    if info == "<p>?</p>":
+        return "<p>Sorry, no info</p>"
     return info
