@@ -12,7 +12,7 @@ def random_song(artist_name):
     '''Displays a random song, and info from the given artist'''
     if request.method =='POST':
         text=request.form['text']
-        redirect(url_for('random_song',artist_name=text))
+        return redirect(url_for('random_song',artist_name=text))
     artist,name = get_artist(artist_name)
     songs = get_songs(artist)
     song = get_song(songs)
