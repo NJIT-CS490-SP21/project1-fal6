@@ -2,6 +2,10 @@ body {
     color: white;
     text-align: center;
     background-color: rgb(55, 55, 58);
+    font-size:30px;
+}
+a{
+    color:green;
 }
 img{
     border-radius:50px;
